@@ -1,0 +1,25 @@
+{
+  "client_path": "./",
+  "deploy_path": "./../deploy",
+  "cdn_deploy_path": "./../deploy/cdn",
+  "package_url": "http://localhost:9002",
+  "manifest": {
+    "folder": [
+      "src",
+      "res"
+    ],
+    "version":"1.1.1",
+    "port":9002
+  },
+  "gen": {
+    "res": "./res",
+    "dst": "./src/Resource.js",
+    "ext": [
+      "*.*"
+    ],
+    "folder": [
+      "*"
+    ],
+    "folder_except": []
+  }
+}
