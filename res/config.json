@@ -9,6 +9,7 @@
       "res"
     ],
     "version":"1.1.1",
+    "increment":false,
     "port":9002
   },
   "gen": {
