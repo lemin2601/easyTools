@@ -3,7 +3,7 @@ import commander
 import shlex
 import utils
 from logger import L
-from gv import num_version
+from gv import num_version, load_config_project
 from time import sleep
 
 
@@ -25,6 +25,9 @@ def loop():
 
     :return:
     """
+
+    load_config_project()
+
     L.debug("running with version: %s", sys.version)
     is_version_2 = sys.version.startswith("2")
     while True:

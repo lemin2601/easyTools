@@ -10,6 +10,7 @@ import json
 import shutil
 import errno
 from distutils.dir_util import copy_tree
+from distutils.file_util import copy_file
 import inout
 from parse import Parser
 
@@ -73,6 +74,12 @@ def main(args):
         folder_will_gen = arguments.folder_gen
 
     gen_manifest(num_version, client_path, package_url, cdn_deploy_path, dst_project_manifest, folder_will_gen)
+    if gv.cdn_auto_increment():
+        nums = num_version.split(".")
+        nums[-1] = int(nums[-1]) + 1
+        num_version = '.'.join(str(x) for x in nums)
+        gv.cdn_set_version(num_version)
+        gv.save()
 
 
 def gen_manifest(num_version, client_path, package_url,
@@ -100,6 +107,8 @@ def gen_manifest(num_version, client_path, package_url,
     for folder in folder_will_gen:
         json_assets = gen_folders(json_assets, join_path(client_path, folder), folder)
         copy_tree(join_path(client_path, folder), join_path(dest_path, folder))
+    json_assets = gen_files(json_assets, '',  "project.json", join_path(client_path, "project.json"))
+    copy_file(join_path(client_path, "project.json"), join_path(dest_path, "project.json"))
     save(json_manifest, json_assets, dest_path, dest_project_manifest)
     # L.debug(json.dumps(json_assets, indent=4))
     pass
@@ -130,9 +139,9 @@ def save(json_manifest, json_assets, dest_path, dest_project_manifest):
     inout.write_json(path_project, json_manifest)
     L.debug("%s", path_project)
 
-    path_project = abs_path(join_path(dest_project_manifest, project_manifest_name))
-    inout.write_json(path_project, json_manifest)
-    L.debug("project.manifest => %s", path_project)
+    # path_project = abs_path(join_path(dest_project_manifest, project_manifest_name))
+    # inout.write_json(path_project, json_manifest)
+    # L.debug("project.manifest => %s", path_project)
     L.debug("save success !!!")
 
 

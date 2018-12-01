@@ -51,7 +51,11 @@ def valid_folder(path):
 
 
 def valid_ext(file_extension):
-    return True
+    if file_extension != '':
+        for ext in default_ext:
+            if ext.endswith(file_extension):
+                return True
+    return False
 
 
 def execute(src, dst, ext, folder, folder_except):

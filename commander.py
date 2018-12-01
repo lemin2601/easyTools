@@ -9,11 +9,14 @@ import os
 import gv
 import utils
 import update_manifest
+import info
 
 
 def execute_func(key, args):
     key = key.strip().lower()
     if key in config.key:
+        if key == 'info':
+            info.main(args)
         if key == 'gen':
             gen.main(args)
         if key == 'cdn':
@@ -27,9 +30,14 @@ def execute_func(key, args):
             os.system(cmd)
 
         if key == 'jslist':
-            cmd = 'node jslist -f {0}'.format(utils.abs_path(utils.join_path(gv.client_path(),"./project.json")))
+            cmd = 'jslist -f "{0}"'.format(utils.abs_path(utils.join_path(gv.client_path(), "./project.json")))
             print(cmd)
-            # os.system(cmd)
+            os.system(cmd)
+
+        if key == 'run':
+            cmd = 'cocos run --proj-dir="{0}" -p web -m debug'.format(utils.abs_path(gv.client_path()))
+            print(cmd)
+            os.system(cmd)
 
         if key == 'quit' or key == 'exit' or key == 'q':
             L.info(">>Quit!")
