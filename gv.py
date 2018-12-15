@@ -2,6 +2,7 @@ import sys
 import os
 import inout
 import utils
+import json
 
 num_version = int(sys.version[:1])
 
@@ -16,9 +17,13 @@ def load_config_project():
         project_config = inout.read_json("./dev.json")
     else:
         project_config = inout.read_json(utils.join_path(ROOT_DIR, "res/config.json"))
+    print(json.dumps(project_config, indent=4))
 
 
 def save():
+    print("====Save====")
+    print(json.dumps(project_config, indent=4))
+    print("============")
     inout.write_json("./dev.json", project_config)
 
 
@@ -44,6 +49,10 @@ def cdn_path():
 
 def cdn_package_url():
     return project_config['package_url']
+
+
+def cdn_set_package_url(new_path):
+    project_config['package_url'] = new_path
 
 
 def cdn_manifest_folder_gen():

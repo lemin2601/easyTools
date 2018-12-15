@@ -37,7 +37,7 @@ def run(port=8000, address='', path="./"):
 def main(args):
     parser = Parser(prog=utils.abs_path('./http_server.py'))
 
-    parser.add_argument("-port", type=int, default=gv.cdn_port(), help="port will run: default 8000")
+    parser.add_argument("-port", default=gv.cdn_port(), help="port will run: default 8000")
     parser.add_argument("-address", default='',
                         help="address bind, default any")
     parser.add_argument("-path", default=gv.cdn_path(),

@@ -1,26 +1,38 @@
 {
-  "client_path": "./",
-  "deploy_path": "./../deploy",
-  "cdn_deploy_path": "./../deploy/cdn",
-  "package_url": "http://localhost:9002",
-  "manifest": {
-    "folder": [
-      "src",
-      "res"
-    ],
-    "version":"1.1.1",
-    "increment":false,
-    "port":9002
-  },
-  "gen": {
-    "res": "./res",
-    "dst": "./src/Resource.js",
-    "ext": [
-      "*.*"
-    ],
-    "folder": [
-      "*"
-    ],
-    "folder_except": []
-  }
+    "manifest": {
+        "folder": [
+            "src",
+            "res"
+        ],
+        "version": "1.1.112",
+        "port": 9002,
+        "increment": true
+    },
+    "cdn_deploy_path": "./../deploy/cdn",
+    "client_path": "./",
+    "package_url": "http://192.168.1.9:9002",
+    "deploy_path": "./../deploy",
+    "gen": {
+        "res": "./res",
+        "dst": "./src/Resource.js",
+        "folder": [
+            "*"
+        ],
+        "ext": [
+            "*.png",
+            "*.jpg",
+            "*.json",
+            "*.mp3"
+        ],
+        "folder_except": []
+    },
+    "build":{
+        "android":{
+            "store_file":"./keystore",
+            "store_pass":"ahihi",
+            "alias_name":"projectBase",
+            "alias_pass":"ahihi"
+        }
+
+    }
 }

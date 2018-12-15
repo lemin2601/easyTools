@@ -107,8 +107,16 @@ def gen_manifest(num_version, client_path, package_url,
     for folder in folder_will_gen:
         json_assets = gen_folders(json_assets, join_path(client_path, folder), folder)
         copy_tree(join_path(client_path, folder), join_path(dest_path, folder))
-    json_assets = gen_files(json_assets, '',  "project.json", join_path(client_path, "project.json"))
-    copy_file(join_path(client_path, "project.json"), join_path(dest_path, "project.json"))
+    #project.json
+    file_name = "project.json"
+    json_assets = gen_files(json_assets, '',  file_name, join_path(client_path, file_name))
+    copy_file(join_path(client_path, file_name), join_path(dest_path, file_name))
+
+    #main.js
+    file_name = "main.js"
+    json_assets = gen_files(json_assets, '', file_name, join_path(client_path, file_name))
+    copy_file(join_path(client_path, file_name), join_path(dest_path, file_name))
+
     save(json_manifest, json_assets, dest_path, dest_project_manifest)
     # L.debug(json.dumps(json_assets, indent=4))
     pass
@@ -139,9 +147,9 @@ def save(json_manifest, json_assets, dest_path, dest_project_manifest):
     inout.write_json(path_project, json_manifest)
     L.debug("%s", path_project)
 
-    # path_project = abs_path(join_path(dest_project_manifest, project_manifest_name))
-    # inout.write_json(path_project, json_manifest)
-    # L.debug("project.manifest => %s", path_project)
+    path_project = abs_path(join_path(dest_project_manifest, project_manifest_name))
+    inout.write_json(path_project, json_manifest)
+    L.debug("project.manifest => %s", path_project)
     L.debug("save success !!!")
 
 

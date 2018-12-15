@@ -10,6 +10,8 @@ import gv
 import utils
 import update_manifest
 import info
+import http_server
+import network
 
 
 def execute_func(key, args):
@@ -21,13 +23,20 @@ def execute_func(key, args):
             gen.main(args)
         if key == 'cdn':
             update_manifest.main(args)
+        if key == 'update-dev':
+            gv.cdn_set_package_url(network.update_host(gv.cdn_package_url()))
+            gv.save()
+        if key == "update-cdn-url":
+            gv.cdn_set_package_url(network.update_host(gv.cdn_package_url()))
+            gv.save()
         if key == 'cdn-run':
             print(gv.ROOT_DIR)
             path = os.path.join(gv.ROOT_DIR, "http_server.py")
             path = os.path.abspath(path)
-            cmd = "python {0} -port {1} -path {2}".format(path, gv.cdn_port(), utils.abs_path(gv.cdn_path()))
-            print(cmd)
-            os.system(cmd)
+            # cmd = "python {0} -port {1} -path {2}".format(path, gv.cdn_port(), utils.abs_path(gv.cdn_path()))
+            print(gv.cdn_package_url())
+            http_server.run(gv.cdn_port(), "", utils.abs_path(gv.cdn_path()))
+            # os.system(cmd)
 
         if key == 'jslist':
             cmd = 'jslist -f "{0}"'.format(utils.abs_path(utils.join_path(gv.client_path(), "./project.json")))
