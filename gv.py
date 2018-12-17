@@ -13,7 +13,7 @@ project_config = {}
 
 def load_config_project():
     global project_config
-    if os.path.exists("./"):
+    if os.path.isfile(os.path.abspath("./dev.json")):
         project_config = inout.read_json("./dev.json")
     else:
         project_config = inout.read_json(utils.join_path(ROOT_DIR, "res/config.json"))
@@ -85,6 +85,59 @@ def gen_folder():
 
 def gen_folder_except():
     return project_config['gen']['folder_except']
+
+
+def build():
+    return project_config["build"]
+
+
+def build_android():
+    return build()["android"]
+
+
+def build_android_store_file():
+    return build_android()['store_file']
+
+
+def build_android_store_pass():
+    return build_android()['store_pass']
+
+
+def build_android_alias_name():
+    return build_android()['alias_name']
+
+
+def build_android_alias_pass():
+    return build_android()['alias_pass']
+
+
+def build_android_name():
+    return build_android()["name"]
+
+
+def build_android_name_first_last_name():
+    return build_android_name()["first_last_name"]
+
+
+def build_android_name_organizational_unit():
+    return build_android_name()["organizational_unit"]
+
+
+def build_android_name_organization():
+    return build_android_name()["organization"]
+
+
+def build_android_name_city():
+    return build_android_name()["city"]
+
+
+def build_android_name_state():
+    return build_android_name()["state"]
+
+
+def build_android_name_code_country():
+    return build_android_name()["code_country"]
+
 
 #
 # client_path = './'

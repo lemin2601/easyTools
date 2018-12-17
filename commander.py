@@ -12,6 +12,7 @@ import update_manifest
 import info
 import http_server
 import network
+import android_build
 
 
 def execute_func(key, args):
@@ -29,6 +30,8 @@ def execute_func(key, args):
         if key == "update-cdn-url":
             gv.cdn_set_package_url(network.update_host(gv.cdn_package_url()))
             gv.save()
+        if key == "android-gen":
+            android_build.main(args)
         if key == 'cdn-run':
             print(gv.ROOT_DIR)
             path = os.path.join(gv.ROOT_DIR, "http_server.py")

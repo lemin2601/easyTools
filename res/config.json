@@ -28,10 +28,18 @@
     },
     "build":{
         "android":{
-            "store_file":"./keystore",
-            "store_pass":"ahihi",
+            "store_file":"./keystore.jks",
+            "store_pass":"ahihi@123",
             "alias_name":"projectBase",
-            "alias_pass":"ahihi"
+            "alias_pass":"ah@123ihi",
+            "name": {
+                "first_last_name": "name",
+                "organizational_unit": "organizational_unit",
+                "organization": "organization",
+                "city": "city",
+                "state": "state",
+                "code_country": "code_country"
+            }
         }
 
     }
